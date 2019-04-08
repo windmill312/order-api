@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tbl_order", schema = "orders")
+@Table(name = "order", schema = "orders")
 public class OrderEntity {
 
     private Integer id;
