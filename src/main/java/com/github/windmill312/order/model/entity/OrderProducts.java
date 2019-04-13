@@ -1,4 +1,4 @@
-package com.sychev.order.model.entity;
+package com.github.windmill312.order.model.entity;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

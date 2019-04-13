@@ -1,6 +1,6 @@
-package com.sychev.order.model.entity;
+package com.github.windmill312.order.model.entity;
 
-import com.sychev.order.model.OrderStatus;
+import com.github.windmill312.order.model.OrderStatus;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order", schema = "orders")
+@Table(name = "orders", schema = "orders")
 public class OrderEntity {
 
     private Integer id;
@@ -31,7 +31,11 @@ public class OrderEntity {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            schema = "orders", name = "orders.order_id_seq",
+            sequenceName = "orders.order_id_seq", allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "orders.order_id_seq")
     public Integer getId() {
         return id;
     }
@@ -74,7 +78,7 @@ public class OrderEntity {
     }
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "order_products", joinColumns = @JoinColumn(name = "order_uid"))
+    @CollectionTable(name = "order_products", schema = "orders", joinColumns = @JoinColumn(name = "order_id"))
     public Set<OrderProducts> getProducts() {
         return products;
     }

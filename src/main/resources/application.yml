@@ -12,9 +12,9 @@ spring:
     name: order
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: "jdbc:postgresql://db-orders.ceg8zokcldpo.eu-west-1.rds.amazonaws.com:5432/db_orders"
-    username: loftcksraetuso
-    password: "uysdgfyb64fg7sbc7sbi7beisbbj12bj1hb3j4hv6hv46v5v8756v87gv69v76g8"
+    url: jdbc:postgresql://localhost:5432/db_orders
+    username: a.sychev
+    password: "Ujkjcjdfzgjxnf8"
 
 
   jpa:

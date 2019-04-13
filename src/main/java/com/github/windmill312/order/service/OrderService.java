@@ -1,6 +1,6 @@
-package com.sychev.order.service;
+package com.github.windmill312.order.service;
 
-import com.sychev.order.model.entity.OrderEntity;
+import com.github.windmill312.order.model.entity.OrderEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

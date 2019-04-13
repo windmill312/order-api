@@ -1,4 +1,4 @@
-package com.sychev.order.exception;
+package com.github.windmill312.order.exception;
 
 public class NotFoundOrderException extends RuntimeException {
 

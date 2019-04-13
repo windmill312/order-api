@@ -1,11 +1,11 @@
-package com.sychev.order.grpc.service.v1.impl;
+package com.github.windmill312.order.grpc.service.v1.impl;
 
-import com.sychev.common.grpc.model.Empty;
-import com.sychev.order.converter.ModelConverter;
-import com.sychev.order.grpc.model.v1.*;
-import com.sychev.order.grpc.service.v1.OrderServiceV1Grpc;
-import com.sychev.order.model.entity.OrderEntity;
-import com.sychev.order.service.OrderService;
+import com.github.windmill312.common.grpc.model.Empty;
+import com.github.windmill312.order.converter.ModelConverter;
+import com.github.windmill312.order.grpc.model.v1.*;
+import com.github.windmill312.order.grpc.service.v1.OrderServiceV1Grpc;
+import com.github.windmill312.order.model.entity.OrderEntity;
+import com.github.windmill312.order.service.OrderService;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,12 +1,14 @@
-package com.sychev.order.converter;
+package com.github.windmill312.order.converter;
 
-import com.sychev.common.grpc.model.GPage;
-import com.sychev.common.grpc.model.GPageable;
-import com.sychev.common.grpc.model.GUuid;
-import com.sychev.order.grpc.model.v1.GOrderInfo;
-import com.sychev.order.model.OrderStatus;
-import com.sychev.order.model.entity.OrderEntity;
-import com.sychev.order.model.entity.OrderProducts;
+import com.github.windmill312.common.grpc.model.GPage;
+import com.github.windmill312.common.grpc.model.GPageable;
+import com.github.windmill312.common.grpc.model.GUuid;
+import com.github.windmill312.customer.grpc.model.v1.GCustomerInfo;
+import com.github.windmill312.order.grpc.model.v1.GOrderInfo;
+import com.github.windmill312.order.model.OrderStatus;
+import com.github.windmill312.order.model.entity.CustomerEntity;
+import com.github.windmill312.order.model.entity.OrderEntity;
+import com.github.windmill312.order.model.entity.OrderProducts;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -71,7 +73,7 @@ public class ModelConverter {
                 .setCustomerUid(convert(entity.getCustomerUid()))
                 .setCafeUid(convert(entity.getCafeUid()))
                 .setTotalPrice(entity.getPrice())
-                .setStatus(convert(entity.getStatus()))
+                .setStatus(OrderStatus.CREATED)
                 .setProducts(entity.getProductsList().stream()
                         .map(ModelConverter::convert)
                         .collect(Collectors.toSet())
@@ -88,5 +90,19 @@ public class ModelConverter {
 
     public static UUID convert(GUuid guuid) {
         return UUID.fromString(guuid.getUuid());
+    }
+
+    public static GCustomerInfo convert(CustomerEntity customerEntity) {
+        return GCustomerInfo.newBuilder()
+                .setBirthDate(customerEntity.getBirthDate().toEpochMilli())
+                .setExtId(convert(customerEntity.getExtId()))
+                .setName(customerEntity.getName())
+                .build();
+    }
+
+    public static CustomerEntity convert(GCustomerInfo customer) {
+        return new CustomerEntity()
+                .setName(customer.getName())
+                .setBirthDate(Instant.ofEpochMilli(customer.getBirthDate()));
     }
 }

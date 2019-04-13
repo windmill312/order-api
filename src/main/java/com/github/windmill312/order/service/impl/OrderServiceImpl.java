@@ -1,9 +1,11 @@
-package com.sychev.order.service.impl;
+package com.github.windmill312.order.service.impl;
 
-import com.sychev.order.exception.NotFoundOrderException;
-import com.sychev.order.model.entity.OrderEntity;
-import com.sychev.order.repository.OrderRepository;
-import com.sychev.order.service.OrderService;
+import com.github.windmill312.order.exception.NotFoundCustomerException;
+import com.github.windmill312.order.exception.NotFoundOrderException;
+import com.github.windmill312.order.model.entity.OrderEntity;
+import com.github.windmill312.order.repository.CustomerRepository;
+import com.github.windmill312.order.repository.OrderRepository;
+import com.github.windmill312.order.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -20,10 +22,13 @@ public class OrderServiceImpl implements OrderService {
     private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     private final OrderRepository orderRepository;
+    private final CustomerRepository customerRepository;
 
     public OrderServiceImpl(
-            OrderRepository orderRepository) {
+            OrderRepository orderRepository,
+            CustomerRepository customerRepository) {
         this.orderRepository = orderRepository;
+        this.customerRepository = customerRepository;
     }
 
     @Override
@@ -47,6 +52,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public UUID addOrder(OrderEntity entity) {
         logger.debug("Add new order with customer uid={} and cafe uid={}", entity.getCustomerUid(), entity.getCafeUid());
+
+        customerRepository.findByExtId(entity.getCustomerUid()).orElseThrow(() -> {
+            logger.info("Not found customer with uid: {}", entity.getCustomerUid());
+            return new NotFoundCustomerException("Not found customer with uid:" + entity.getCustomerUid());
+        });
+
         return orderRepository.save(entity).getOrderUid();
     }
 

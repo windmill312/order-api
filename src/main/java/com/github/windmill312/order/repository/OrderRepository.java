@@ -1,6 +1,6 @@
-package com.sychev.order.repository;
+package com.github.windmill312.order.repository;
 
-import com.sychev.order.model.entity.OrderEntity;
+import com.github.windmill312.order.model.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

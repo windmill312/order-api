@@ -1,7 +1,7 @@
-package com.sychev.order.grpc.service;
+package com.github.windmill312.order.grpc.service;
 
 
-import com.sychev.order.exception.NotFoundOrderException;
+import com.github.windmill312.order.exception.NotFoundOrderException;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.aspectj.lang.ProceedingJoinPoint;

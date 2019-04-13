@@ -1,4 +1,4 @@
-package com.sychev.order.model;
+package com.github.windmill312.order.model;
 
 public enum OrderStatus {
     CREATED,

@@ -1,12 +1,13 @@
 package com.sychev.order.grpc.service.v1.impl;
 
-import com.sychev.common.grpc.model.GPageable;
-import com.sychev.common.grpc.model.GUuid;
-import com.sychev.order.converter.ModelConverter;
-import com.sychev.order.grpc.model.v1.*;
-import com.sychev.order.model.OrderStatus;
-import com.sychev.order.model.entity.OrderEntity;
-import com.sychev.order.service.OrderService;
+import com.github.windmill312.order.grpc.service.v1.impl.OrderServiceV1GrpcImpl;
+import com.github.windmill312.common.grpc.model.GPageable;
+import com.github.windmill312.common.grpc.model.GUuid;
+import com.github.windmill312.order.converter.ModelConverter;
+import com.github.windmill312.order.grpc.model.v1.*;
+import com.github.windmill312.order.model.OrderStatus;
+import com.github.windmill312.order.model.entity.OrderEntity;
+import com.github.windmill312.order.service.OrderService;
 import io.grpc.stub.StreamObserver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
