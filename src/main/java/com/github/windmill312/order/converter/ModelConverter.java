@@ -42,7 +42,6 @@ public class ModelConverter {
                 .setCafeUid(convert(entity.getCafeUid()))
                 .setCustomerUid(convert(entity.getCustomerUid()))
                 .setOrderUid(convert(entity.getOrderUid()))
-                .setCreateMills(entity.getCreateDttm().toEpochMilli())
                 .setReceiveMills(entity.getReceiveDttm().toEpochMilli())
                 .setPrice(entity.getTotalPrice())
                 .setStatus(convert(entity.getStatus()))
@@ -78,7 +77,7 @@ public class ModelConverter {
                         .map(ModelConverter::convert)
                         .collect(Collectors.toSet())
                 )
-                .setCreateDttm(Instant.ofEpochMilli(entity.getCreateMills()))
+                .setCreateDttm(Instant.now())
                 .setReceiveDttm(Instant.ofEpochMilli(entity.getReceiveMills()));
     }
 

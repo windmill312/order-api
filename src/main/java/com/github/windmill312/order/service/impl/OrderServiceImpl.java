@@ -1,5 +1,6 @@
 package com.github.windmill312.order.service.impl;
 
+import com.github.windmill312.order.exception.InvalidReceiveTimeException;
 import com.github.windmill312.order.exception.NotFoundCustomerException;
 import com.github.windmill312.order.exception.NotFoundOrderException;
 import com.github.windmill312.order.model.entity.OrderEntity;
@@ -13,6 +14,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,6 +57,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public UUID addOrder(OrderEntity entity) {
         logger.debug("Add new order with customer uid={} and cafe uid={}", entity.getCustomerUid(), entity.getCafeUid());
+
+        if (entity.getCreateDttm().plus(5, ChronoUnit.MINUTES).isAfter(entity.getReceiveDttm()))
+            throw new InvalidReceiveTimeException("Invalid receive time");
 
         customerRepository.findByExtId(entity.getCustomerUid()).orElseThrow(() -> {
             logger.info("Not found customer with uid: {}", entity.getCustomerUid());

@@ -69,7 +69,6 @@ public class OrderServiceV1GrpcImplTest {
         assertEquals(ModelConverter.convert(response.getOrdersList().get(0).getCafeUid()), serviceResponse.getContent().get(0).getCafeUid());
         assertEquals(ModelConverter.convert(response.getOrdersList().get(0).getCafeUid()), serviceResponse.getContent().get(0).getCafeUid());
         assertEquals(ModelConverter.convert(response.getOrdersList().get(0).getCustomerUid()), serviceResponse.getContent().get(0).getCustomerUid());
-        assertEquals(response.getOrdersList().get(0).getCreateMills(), serviceResponse.getContent().get(0).getCreateDttm().toEpochMilli());
         assertEquals(response.getOrdersList().get(0).getReceiveMills(), serviceResponse.getContent().get(0).getReceiveDttm().toEpochMilli());
         assertEquals((Double)response.getOrdersList().get(0).getPrice(), serviceResponse.getContent().get(0).getTotalPrice());
         assertEquals(response.getOrdersList().get(0).getStatus().name(), serviceResponse.getContent().get(0).getStatus().name());
@@ -97,7 +96,6 @@ public class OrderServiceV1GrpcImplTest {
         assertEquals(response.getOrdersList().size(), serviceResponse.size());
         assertEquals(ModelConverter.convert(response.getOrders(0).getCafeUid()), serviceResponse.get(0).getCafeUid());
         assertEquals(ModelConverter.convert(response.getOrders(0).getCustomerUid()), serviceResponse.get(0).getCustomerUid());
-        assertEquals(response.getOrders(0).getCreateMills(), serviceResponse.get(0).getCreateDttm().toEpochMilli());
         assertEquals(response.getOrders(0).getReceiveMills(), serviceResponse.get(0).getReceiveDttm().toEpochMilli());
         assertEquals((Double)response.getOrders(0).getPrice(), serviceResponse.get(0).getTotalPrice());
         assertEquals(response.getOrders(0).getStatus().name(), serviceResponse.get(0).getStatus().name());
@@ -127,7 +125,6 @@ public class OrderServiceV1GrpcImplTest {
         assertEquals(ModelConverter.convert(response.getOrder().getOrderUid()), serviceResponse.getOrderUid());
         assertEquals(ModelConverter.convert(response.getOrder().getCafeUid()), serviceResponse.getCafeUid());
         assertEquals(ModelConverter.convert(response.getOrder().getCustomerUid()), serviceResponse.getCustomerUid());
-        assertEquals(response.getOrder().getCreateMills(), serviceResponse.getCreateDttm().toEpochMilli());
         assertEquals(response.getOrder().getReceiveMills(), serviceResponse.getReceiveDttm().toEpochMilli());
         assertEquals((Double)response.getOrder().getPrice(), serviceResponse.getTotalPrice());
         assertEquals(response.getOrder().getStatus().name(), serviceResponse.getStatus().name());
@@ -142,7 +139,6 @@ public class OrderServiceV1GrpcImplTest {
         GAddOrderRequest request = GAddOrderRequest.newBuilder()
                 .setOrder(GOrderInfo.newBuilder()
                         .setReceiveMills(RECEIVE_DTTM)
-                        .setCreateMills(CREATE_DTTM)
                         .setPrice(TOTAL_PRICE)
                         .setCustomerUid(ModelConverter.convert(CUSTOMER_UID))
                         .setCafeUid(ModelConverter.convert(CAFE_UID)))
