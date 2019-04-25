@@ -102,6 +102,8 @@ public class ModelConverter {
     public static CustomerEntity convert(GCustomerInfo customer) {
         return new CustomerEntity()
                 .setName(customer.getName())
-                .setBirthDate(Instant.ofEpochMilli(customer.getBirthDate()));
+                .setBirthDate(Instant.ofEpochMilli(customer.getBirthDate()))
+                .setExtId(convert(customer.getExtId()));
+
     }
 }

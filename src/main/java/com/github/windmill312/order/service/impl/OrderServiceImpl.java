@@ -14,13 +14,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Clock;
-import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
+@Transactional
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -80,13 +78,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional
     public void removeOrder(UUID orderUid) {
         orderRepository.deleteByOrderUid(orderUid);
     }
 
     @Override
-    @Transactional
     public void removeAllOrdersByCustomer(UUID customerUid) {
         orderRepository.deleteAllByCustomerUid(customerUid);
     }
