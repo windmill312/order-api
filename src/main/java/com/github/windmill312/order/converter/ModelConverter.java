@@ -43,6 +43,7 @@ public class ModelConverter {
                 .setCustomerUid(convert(entity.getCustomerUid()))
                 .setOrderUid(convert(entity.getOrderUid()))
                 .setReceiveMills(entity.getReceiveDttm().toEpochMilli())
+                .setCreateMills(entity.getCreateDttm().toEpochMilli())
                 .setPrice(entity.getTotalPrice())
                 .setStatus(convert(entity.getStatus()))
                 .addAllProducts(entity.getProducts().stream()
