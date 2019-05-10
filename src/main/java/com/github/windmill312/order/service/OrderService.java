@@ -1,5 +1,6 @@
 package com.github.windmill312.order.service;
 
+import com.github.windmill312.order.model.OrderStatus;
 import com.github.windmill312.order.model.entity.OrderEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,4 +24,5 @@ public interface OrderService {
 
     void removeAllOrdersByCustomer(UUID customerUid);
 
+    void updateOrderStatus(UUID convert, OrderStatus status);
 }

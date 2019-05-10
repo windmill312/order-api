@@ -5,6 +5,7 @@ import com.github.windmill312.common.grpc.model.GPageable;
 import com.github.windmill312.common.grpc.model.GUuid;
 import com.github.windmill312.customer.grpc.model.v1.GCustomerInfo;
 import com.github.windmill312.order.grpc.model.v1.GOrderInfo;
+import com.github.windmill312.order.grpc.model.v1.GOrderStatus;
 import com.github.windmill312.order.model.OrderStatus;
 import com.github.windmill312.order.model.entity.CustomerEntity;
 import com.github.windmill312.order.model.entity.OrderEntity;
@@ -60,11 +61,11 @@ public class ModelConverter {
                 .build();
     }
 
-    private static GOrderInfo.OrderStatus convert(OrderStatus status) {
-        return GOrderInfo.OrderStatus.valueOf(status.name());
+    private static GOrderStatus convert(OrderStatus status) {
+        return GOrderStatus.valueOf(status.name());
     }
 
-    private static OrderStatus convert(GOrderInfo.OrderStatus status) {
+    public static OrderStatus convert(GOrderStatus status) {
         return OrderStatus.valueOf(status.name());
     }
 

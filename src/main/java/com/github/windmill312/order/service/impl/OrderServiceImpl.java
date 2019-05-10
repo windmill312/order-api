@@ -3,6 +3,7 @@ package com.github.windmill312.order.service.impl;
 import com.github.windmill312.order.exception.InvalidReceiveTimeException;
 import com.github.windmill312.order.exception.NotFoundCustomerException;
 import com.github.windmill312.order.exception.NotFoundOrderException;
+import com.github.windmill312.order.model.OrderStatus;
 import com.github.windmill312.order.model.entity.OrderEntity;
 import com.github.windmill312.order.repository.CustomerRepository;
 import com.github.windmill312.order.repository.OrderRepository;
@@ -75,6 +76,17 @@ public class OrderServiceImpl implements OrderService {
         });
         logger.debug("Update order with uid={}", entity.getOrderUid());
         orderRepository.save(order.copy(entity));
+    }
+
+    @Override
+    public void updateOrderStatus(UUID orderUid, OrderStatus status) {
+        OrderEntity order = orderRepository.findByOrderUid(orderUid).orElseThrow(() -> {
+            logger.info("Not found order with uid={}", orderUid);
+            return new NotFoundOrderException("Not found order with uid=" + orderUid);
+        });
+        logger.debug("Update order status with uid={} on {}", order.getOrderUid(), status.name().toUpperCase());
+        order.setStatus(status);
+        orderRepository.save(order);
     }
 
     @Override

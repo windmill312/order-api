@@ -98,6 +98,19 @@ public class OrderServiceV1GrpcImpl extends OrderServiceV1Grpc.OrderServiceV1Imp
     }
 
     @Override
+    public void updateOrderStatus(
+            GUpdateOrderStatusRequest request,
+            StreamObserver<Empty> responseObserver) {
+
+        orderService.updateOrderStatus(
+                ModelConverter.convert(request.getOrderUid()),
+                        ModelConverter.convert(request.getStatus()));
+
+        responseObserver.onNext(Empty.newBuilder().build());
+        responseObserver.onCompleted();
+    }
+
+    @Override
     public void removeOrder(
             GRemoveOrderRequest request,
             StreamObserver<Empty> responseObserver) {
