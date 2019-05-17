@@ -96,7 +96,7 @@ public class ModelConverter {
     public static GCustomerInfo convert(CustomerEntity customerEntity) {
         return GCustomerInfo.newBuilder()
                 .setBirthDate(customerEntity.getBirthDate().toEpochMilli())
-                .setExtId(convert(customerEntity.getExtId()))
+                .setExtId(convert(customerEntity.getUuid()))
                 .setName(customerEntity.getName())
                 .build();
     }
@@ -105,7 +105,7 @@ public class ModelConverter {
         return new CustomerEntity()
                 .setName(customer.getName())
                 .setBirthDate(Instant.ofEpochMilli(customer.getBirthDate()))
-                .setExtId(convert(customer.getExtId()));
+                .setUuid(convert(customer.getExtId()));
 
     }
 }

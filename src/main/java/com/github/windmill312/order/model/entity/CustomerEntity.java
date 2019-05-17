@@ -15,7 +15,7 @@ public class CustomerEntity {
     private Integer id;
     private String name;
     private Instant birthDate;
-    private UUID extId = UUID.randomUUID();
+    private UUID uuid = UUID.randomUUID();
 
     public CustomerEntity() {
     }
@@ -58,13 +58,13 @@ public class CustomerEntity {
     }
 
     @Type(type = "pg-uuid")
-    @Column(name = "ext_id", nullable = false)
-    public UUID getExtId() {
-        return extId;
+    @Column(name = "uuid", nullable = false)
+    public UUID getUuid() {
+        return uuid;
     }
 
-    public CustomerEntity setExtId(UUID extId) {
-        this.extId = extId;
+    public CustomerEntity setUuid(UUID uuid) {
+        this.uuid = uuid;
         return this;
     }
 

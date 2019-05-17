@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
         if (entity.getCreateDttm().plus(5, ChronoUnit.MINUTES).isAfter(entity.getReceiveDttm()))
             throw new InvalidReceiveTimeException("Invalid receive time");
 
-        customerRepository.findByExtId(entity.getCustomerUid()).orElseThrow(() -> {
+        customerRepository.findByUuid(entity.getCustomerUid()).orElseThrow(() -> {
             logger.info("Not found customer with uid: {}", entity.getCustomerUid());
             return new NotFoundCustomerException("Not found customer with uid:" + entity.getCustomerUid());
         });

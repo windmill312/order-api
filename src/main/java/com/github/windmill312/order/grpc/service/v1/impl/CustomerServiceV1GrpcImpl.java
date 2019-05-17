@@ -1,5 +1,6 @@
 package com.github.windmill312.order.grpc.service.v1.impl;
 
+import com.github.windmill312.common.grpc.model.Empty;
 import com.github.windmill312.customer.grpc.model.v1.*;
 import com.github.windmill312.customer.grpc.service.v1.CustomerServiceV1Grpc;
 import com.github.windmill312.order.converter.ModelConverter;
@@ -63,6 +64,17 @@ public class CustomerServiceV1GrpcImpl extends CustomerServiceV1Grpc.CustomerSer
         responseObserver.onNext(GAddCustomerResponse.newBuilder()
                 .setCustomerUid(ModelConverter.convert(customerUid))
                 .build());
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void removeCustomer(
+            GRemoveCustomerRequest request,
+            StreamObserver<Empty> responseObserver) {
+
+        customerService.removeCustomer(ModelConverter.convert(request.getCustomerUid()));
+
+        responseObserver.onNext(Empty.newBuilder().build());
         responseObserver.onCompleted();
     }
     
